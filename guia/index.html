@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA do Zero — os primeiros 20 pedidos de quem nunca usou IA</title>
+<meta name="description" content="Kit para quem nunca usou IA: 20 pedidos prontos para colar em qualquer chat de IA, organizados por situação do dia a dia, com o que você deve ver na resposta e o erro comum de cada um. Mais 10 dicas práticas.">
+<meta property="og:title" content="IA do Zero — os primeiros 20 pedidos">
+<meta property="og:description" content="Cole, troque duas palavras, veja acontecer. 20 pedidos prontos e 10 dicas para quem nunca usou IA.">
+<meta property="og:image" content="https://inematds.github.io/ia-do-zero/capa/capa.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  /* adições do kit: cabeçalho de situação, pedido colável com botão copiar, linhas "o que ver" e "erro comum" */
+  .sit{margin:44px 0 18px;padding-top:26px;border-top:1px dashed var(--line)}
+  .sit:first-of-type{margin-top:8px;border-top:none;padding-top:0}
+  .sit h3{font-size:1.3rem}
+  .sit p{color:var(--mut);margin:.3em 0 0;max-width:62ch}
+  .pw{position:relative}
+  .pw pre{white-space:pre-wrap;overflow-wrap:anywhere;padding-right:86px}
+  .pw pre .t{color:var(--amb2)}
+  .copy{position:absolute;top:10px;right:10px;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:.35em .7em;font:600 .78rem Sora,sans-serif;cursor:pointer}
+  .copy:hover{border-color:var(--amb)} .copy.ok{background:var(--amb);color:#1a1206;border-color:var(--amb)}
+  .ver{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  @media(max-width:680px){.ver{grid-template-columns:1fr}}
+  .ver div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.9rem;color:var(--mut)}
+  .ver b{display:block;font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amb);margin-bottom:.3em}
+  .ver .err b{color:#e0736f}
+  .step p.q{color:var(--txt)}
+  .dica .num{margin-bottom:.4em}
+  html{overflow-x:clip}
+  @media(max-width:600px){nav .wrap{gap:10px} nav .brand{white-space:nowrap} nav .links{gap:10px} nav .links .btn{display:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🌱</span> IA do Zero</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">O que é</a>
+    <a class="sec" href="#fluxo">Como usar</a>
+    <a class="sec" href="#guia">Os 20 pedidos</a>
+    <a class="sec" href="#dicas">Dicas</a>
+    <a class="sec" href="#exemplos">Exemplos</a>
+    <a class="sec" href="#roadmap">Próximos passos</a>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/ia-do-zero" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Para quem nunca usou IA</span>
+      <h1>Os primeiros 20 pedidos, prontos para <span class="amb">colar</span></h1>
+      <p class="lead">Você não precisa entender como a IA funciona para ganhar uma hora por dia com ela. Precisa de um pedido bem feito. Aqui estão vinte, organizados pela situação em que você está, com o que você deve ver na resposta.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Ver os 20 pedidos</a>
+        <a class="btn ghost" href="#fluxo">Como usar em 1 minuto</a>
+      </div>
+    </div>
+    <figure><img src="assets/hero.jpg" alt="Um caderno aberto com anotações à mão, uma caneta e um celular sobre a mesa da cozinha, de manhã"></figure>
+  </div>
+</header>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">O que é</span>
+  <h2>Um kit, não um curso</h2>
+  <p class="sub">Vinte pedidos que funcionam em qualquer chat de IA (ChatGPT, Claude, Gemini, Copilot, inclusive nas versões gratuitas). Você copia, troca as partes marcadas entre &lt; &gt; pelas suas, cola, e compara a resposta com o que este kit diz que você deve ver.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🗂️ Por situação, não por teoria</h3><p>Responder um e-mail difícil, entender um documento longo, montar uma planilha, decidir entre duas opções, atender um cliente. Você procura pela situação em que está, não por um conceito.</p></div>
+    <div class="card"><h3>👀 Você sabe o que esperar</h3><p>Cada pedido diz o que uma boa resposta contém e qual é o erro mais comum de quem começa. Sem isso, você não tem como saber se a resposta serviu.</p></div>
+    <div class="card"><h3>🔒 Sem risco</h3><p>Nenhum pedido usa dado real de cliente, número de documento ou senha. Você testa com nomes trocados e só usa de verdade quando tiver conferido o resultado.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Como usar</span>
+  <h2>Quatro passos, um minuto</h2>
+  <p class="sub">O mesmo caminho vale para os vinte pedidos. Depois da terceira vez você faz de cabeça.</p>
+  <div class="flow">
+    <span>1 · Ache a situação</span><span class="arr">→</span>
+    <span>2 · Copie o pedido</span><span class="arr">→</span>
+    <span>3 · Troque o que está entre &lt; &gt;</span><span class="arr">→</span>
+    <span>4 · Compare com "o que você deve ver"</span>
+  </div>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="card"><h3>Onde colar</h3><p>Em qualquer chat de IA. Abra uma conversa nova para cada pedido, assim o assunto anterior não mistura com o novo.</p></div>
+    <div class="card"><h3>O que trocar</h3><p>Só o que está entre &lt; e &gt;. O resto do pedido já está pensado para dar uma resposta boa. Se quiser mudar o tom ou o tamanho, mude ali, não apague as instruções.</p></div>
+    <div class="card"><h3>Se sair errado</h3><p>Não recomece. Escreva na mesma conversa: "ficou longo demais, corte pela metade" ou "troque o tom para mais direto". A segunda resposta quase sempre acerta.</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Os 20 pedidos · por situação</span>
+  <h2>Cole, troque, compare</h2>
+  <p class="sub">Seis situações do dia a dia. O texto em laranja dentro do pedido é o que você troca. O botão copiar leva o pedido inteiro para a área de transferência.</p>
+
+  <!-- ===== A · ESCREVER ===== -->
+  <div class="sit" id="escrever"><h3>A · Escrever algo que você está adiando</h3><p>E-mails, mensagens e comunicados que travam porque o tom é delicado ou porque a folha está em branco.</p></div>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Responder um e-mail difícil</h3>
+    <p>Quando alguém pediu algo que você precisa negar, adiar ou corrigir, e você reescreveu três vezes sem enviar.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Preciso responder um e-mail. Quem escreveu: <span class="t">&lt;cliente, chefe, colega ou fornecedor&gt;</span>. O que aconteceu, em duas frases: <span class="t">&lt;resumo do pedido ou do problema&gt;</span>. O que eu quero que aconteça depois da minha resposta: <span class="t">&lt;ex.: que ele aceite o novo prazo de sexta&gt;</span>.
+Escreva a resposta em até 8 linhas, educada e firme, sem pedir desculpas mais de uma vez. No fim, me diga em uma frase qual trecho da resposta faz o pedido principal.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Uma resposta curta, com o pedido principal claro no meio, e uma frase separada apontando onde ele está. Se você não achar o pedido em 5 segundos, peça "deixe o pedido principal na primeira frase".</div><div class="err"><b>Erro comum</b>Colar o e-mail inteiro do outro sem dizer o que você quer que aconteça. A IA responde educadamente ao nada.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Mandar uma mensagem curta para um cliente</h3>
+    <p>Confirmar horário, avisar atraso, lembrar um pagamento. Coisas de três linhas que você deixa para depois.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Escreva uma mensagem curta de WhatsApp para <span class="t">&lt;cliente ou paciente&gt;</span>. Motivo: <span class="t">&lt;ex.: confirmar a consulta de quinta às 15h&gt;</span>. Meu tom com clientes é <span class="t">&lt;próximo e informal / cordial e profissional&gt;</span>. Máximo de 3 linhas, sem emoji, terminando com uma pergunta simples que a pessoa consiga responder com uma palavra.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Três linhas, um motivo, uma pergunta no fim do tipo "confirma?". Se vier um texto de e-mail formal, diga "isso é WhatsApp, corte para 3 linhas".</div><div class="err"><b>Erro comum</b>Não dizer qual é o seu tom. A IA escolhe um tom de banco e o cliente estranha.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Escrever um comunicado para a equipe</h3>
+    <p>Uma mudança de regra, de horário, de sistema. Precisa ser claro sem soar frio.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Escreva um comunicado interno para <span class="t">&lt;a equipe toda / o setor de X&gt;</span>. O que muda: <span class="t">&lt;ex.: a partir de 1º de outubro os pedidos de férias passam a ser feitos pelo sistema, não por e-mail&gt;</span>. Por que muda: <span class="t">&lt;motivo em uma frase&gt;</span>. O que a pessoa precisa fazer e até quando: <span class="t">&lt;ação e prazo&gt;</span>.
+Estrutura: título de uma linha, o que muda, por quê, o que fazer, a quem perguntar. Tom cordial e direto, até 12 linhas. Nada de "prezados colaboradores".</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Cinco blocos curtos na ordem pedida. A ação e o prazo aparecem em uma linha própria, fáceis de achar.</div><div class="err"><b>Erro comum</b>Pedir "um comunicado sobre férias" sem dizer o que muda. Sai um texto genérico que ninguém lê.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Melhorar um texto que você já escreveu</h3>
+    <p>Você tem o rascunho. Quer que fique mais claro sem virar texto de outra pessoa.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Abaixo está um texto meu. Melhore só a clareza: frases mais curtas, sem repetição, sem mudar o que eu quis dizer nem o meu jeito de escrever. Mantenha o tamanho parecido. Depois, liste em 3 linhas o que você mudou e por quê.
+
+Texto:
+<span class="t">&lt;cole aqui o seu rascunho&gt;</span></pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>O texto ainda parece seu, só mais limpo, e uma lista curta do que mudou. Se ele reescreveu tudo, diga "mudou demais, faça só cortes e trocas de palavra".</div><div class="err"><b>Erro comum</b>Pedir "melhore este texto". Sem limite, a IA troca o texto por outro, com o tom dela.</div></div>
+  </div></div>
+
+  <!-- ===== B · ENTENDER ===== -->
+  <div class="sit" id="entender"><h3>B · Entender algo longo ou difícil</h3><p>Documentos, contratos, relatórios e termos que chegam na sua mesa sem tempo para ler com calma.</p></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Resumir um documento longo</h3>
+    <p>Um relatório de 20 páginas, uma ata, um manual. Você precisa saber o que importa antes da reunião.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Vou colar um documento. Resuma em 3 partes: (1) do que se trata, em 2 frases; (2) as 5 informações que mais importam para <span class="t">&lt;quem você é, ex.: a gestora de RH que precisa decidir se aprova&gt;</span>; (3) o que o documento pede que alguém faça, com prazos, se houver. Se algum ponto estiver confuso no original, diga qual, em vez de inventar.
+
+Documento:
+<span class="t">&lt;cole o texto aqui&gt;</span></pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Três partes numeradas. Na parte 2, cinco itens ligados ao seu papel, não um resumo geral. Se houver "o documento não deixa claro X", ótimo: é sinal de honestidade.</div><div class="err"><b>Erro comum</b>Não dizer quem você é. O resumo sai para um leitor genérico e perde exatamente o que interessava a você.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Explicar um termo ou uma cláusula em linguagem simples</h3>
+    <p>Uma cláusula de contrato, um termo de plano de saúde, uma sigla que todo mundo usa e ninguém explica.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Explique o trecho abaixo como se eu tivesse 15 anos e nunca tivesse visto isso: o que ele diz, o que muda para mim na prática, e uma pergunta que eu deveria fazer a quem me mandou isso antes de assinar ou aceitar. Até 10 linhas. Se houver risco de você estar errado por falta de contexto, avise.
+
+Trecho:
+<span class="t">&lt;cole o termo ou a cláusula&gt;</span></pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Uma explicação sem jargão, um "na prática" concreto, e uma pergunta pronta para você fazer. A pergunta é a parte mais valiosa.</div><div class="err"><b>Erro comum</b>Tratar a explicação como parecer final. Ela serve para você entender e perguntar, não para decidir sozinho um contrato.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Traduzir algo técnico para o cliente</h3>
+    <p>O técnico explicou o problema em termos que você entendeu pela metade, e agora você precisa explicar ao cliente.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Reescreva a explicação abaixo para <span class="t">&lt;um cliente leigo / um paciente / a diretoria&gt;</span>: sem termos técnicos, dizendo o que aconteceu, o que isso significa para a pessoa e o que vai ser feito, em até 6 linhas. Mantenha os fatos, não invente prazo nem promessa que não esteja no original.
+
+Explicação original:
+<span class="t">&lt;cole o que o técnico ou o especialista escreveu&gt;</span></pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Seis linhas em português comum, três blocos: aconteceu, significa, vai ser feito. Nenhum prazo novo que não estava no original.</div><div class="err"><b>Erro comum</b>Deixar a IA "completar" com uma promessa de prazo. Sempre confira se cada compromisso do texto final existia na versão original.</div></div>
+  </div></div>
+
+  <!-- ===== C · ORGANIZAR ===== -->
+  <div class="sit" id="organizar"><h3>C · Organizar o trabalho</h3><p>Planilhas simples, semanas cheias e reuniões que precisam render.</p></div>
+
+  <div class="step"><div class="b">8</div><div>
+    <h3>Montar uma planilha simples do zero</h3>
+    <p>Você sabe o que quer controlar, mas não sabe quais colunas criar nem como calcular o total.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Quero controlar <span class="t">&lt;ex.: os pagamentos dos pacientes por mês&gt;</span> numa planilha. Me diga: (1) as colunas, na ordem, com um exemplo de linha preenchida; (2) qual coluna é preenchida à mão e qual é calculada; (3) a fórmula de cada coluna calculada, escrita como eu digito no Excel ou no Google Planilhas, com a célula de exemplo; (4) uma linha de total no fim. Uso <span class="t">&lt;Excel em português / Google Planilhas&gt;</span>.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Uma tabela de exemplo com uma linha preenchida e fórmulas que começam com "=" e citam células, como "=SOMA(D2:D31)". Copie uma fórmula, cole na célula indicada e veja o número aparecer.</div><div class="err"><b>Erro comum</b>Não dizer qual programa e idioma você usa. A fórmula vem em inglês ("SUM") e dá erro no Excel em português.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">9</div><div>
+    <h3>Organizar a semana a partir de uma lista bagunçada</h3>
+    <p>Você tem 15 coisas na cabeça e nenhuma ordem. Despeje tudo e peça a ordem.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Abaixo está tudo o que preciso fazer esta semana, sem ordem. Organize em: (1) o que tem prazo ou consequência se atrasar, com o dia; (2) o que rende mais se feito cedo; (3) o que pode esperar a semana que vem sem prejuízo. Depois, proponha uma ordem para <span class="t">&lt;segunda e terça&gt;</span> com no máximo 4 itens por dia. Não invente tarefas que eu não listei.
+
+Lista:
+<span class="t">&lt;despeje aqui, uma por linha, do jeito que vier&gt;</span></pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Três grupos com os seus itens, nada a mais, e dois dias com até 4 tarefas cada. Se algum item foi "resumido" e perdeu o sentido, corrija na conversa.</div><div class="err"><b>Erro comum</b>Aceitar a ordem sem ler. A IA não sabe que o item 7 depende de alguém que está de férias. Ajuste os dois ou três que ela não tinha como saber.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">10</div><div>
+    <h3>Preparar uma reunião que precisa terminar com decisão</h3>
+    <p>Meia hora com quatro pessoas ocupadas. Sem pauta, vira conversa. Com pauta, vira decisão.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Monte a pauta de uma reunião de <span class="t">&lt;30&gt;</span> minutos sobre <span class="t">&lt;ex.: se abrimos a clínica aos sábados&gt;</span>. Participantes: <span class="t">&lt;quem e o papel de cada um&gt;</span>. A reunião precisa terminar com <span class="t">&lt;ex.: uma decisão sim/não e quem faz o quê&gt;</span>.
+Entregue: 3 a 4 blocos com minutos, a pergunta exata que cada bloco responde, o que cada pessoa deveria trazer pronto, e a frase de fechamento que registra a decisão.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Blocos com minutos que somam 30, uma pergunta por bloco, e a frase de fechamento pronta. Mande a pauta antes; o "o que trazer pronto" é o que faz a reunião render.</div><div class="err"><b>Erro comum</b>Não dizer o resultado que a reunião precisa ter. Sai uma pauta de "alinhamento", que é o nome bonito de reunião sem decisão.</div></div>
+  </div></div>
+
+  <!-- ===== D · DECIDIR ===== -->
+  <div class="sit" id="decidir"><h3>D · Decidir com mais calma</h3><p>A IA não decide por você. Ela organiza o que você já sabe e mostra o que você ainda não perguntou.</p></div>
+
+  <div class="step"><div class="b">11</div><div>
+    <h3>Comparar duas opções com honestidade</h3>
+    <p>Trocar de fornecedor, contratar ou não, comprar ou alugar. Você já tem uma preferência e quer testá-la.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Estou decidindo entre <span class="t">&lt;opção A&gt;</span> e <span class="t">&lt;opção B&gt;</span>. Contexto: <span class="t">&lt;3 frases sobre a sua situação, dinheiro, prazo e o que importa&gt;</span>. Eu estou inclinado a <span class="t">&lt;A ou B&gt;</span>.
+Faça: (1) os 3 prós e 3 contras de cada uma, específicos para o meu contexto; (2) o argumento mais forte CONTRA a opção que eu prefiro; (3) a informação que eu ainda não tenho e que mudaria a decisão. Não escolha por mim.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Prós e contras que citam o seu contexto, um argumento contra a sua preferência que doa um pouco, e uma informação que falta. Se a parte 2 veio fraca, peça "seja mais duro com a minha preferência".</div><div class="err"><b>Erro comum</b>Esconder a preferência. A IA tende a concordar com quem pergunta; dizendo para onde você pende, você pede o contraditório de propósito.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">12</div><div>
+    <h3>Descobrir as perguntas que você deveria fazer antes</h3>
+    <p>Antes de assinar, contratar, comprar ou aceitar. O erro caro quase sempre é a pergunta que não foi feita.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Vou <span class="t">&lt;ex.: contratar uma empresa para refazer o site da loja&gt;</span>. Nunca fiz isso. Liste as 10 perguntas que uma pessoa experiente faria antes de fechar, em ordem de importância, cada uma com uma linha dizendo por que ela importa e qual resposta seria um sinal de alerta.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Dez perguntas em ordem, cada uma com o "por quê" e o sinal de alerta. Leve as cinco primeiras para a conversa com o fornecedor.</div><div class="err"><b>Erro comum</b>Pedir "dicas para contratar X". Vem uma lista genérica de conselhos. Perguntas prontas são mais úteis que conselhos.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">13</div><div>
+    <h3>Conferir um número ou uma afirmação antes de repassar</h3>
+    <p>Alguém mandou um dado com toda a confiança. Você vai repassar para a diretoria ou para o cliente. Confira antes.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Recebi esta afirmação e vou repassá-la: "<span class="t">&lt;cole a frase ou o número&gt;</span>". Antes de repassar, me diga: (1) o que precisaria ser verdade para essa afirmação estar certa; (2) como eu conferiria isso em 5 minutos, com fonte ou conta; (3) o que muda se estiver errada. Se você não tiver certeza, diga que não tem, em vez de confirmar.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Um caminho de conferência que você consegue seguir sozinho em 5 minutos, e uma resposta honesta sobre a própria incerteza. A IA também erra número com confiança; o valor aqui é o método, não o veredito.</div><div class="err"><b>Erro comum</b>Perguntar "isso está certo?". A IA responde "sim" ou "não" com a mesma segurança nos dois casos. Peça o método de conferir, não o veredito.</div></div>
+  </div></div>
+
+  <!-- ===== E · ATENDER E VENDER ===== -->
+  <div class="sit" id="atender"><h3>E · Atender e vender</h3><p>Reclamações, descrições de serviço e a divulgação que fica para depois porque ninguém tem tempo.</p></div>
+
+  <div class="step"><div class="b">14</div><div>
+    <h3>Responder uma reclamação sem piorar</h3>
+    <p>O cliente está bravo, com ou sem razão. A resposta precisa acalmar, resolver e não prometer o que você não pode.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Um cliente reclamou. O que ele disse: <span class="t">&lt;cole ou resuma a reclamação&gt;</span>. O que de fato aconteceu: <span class="t">&lt;a sua versão, honesta&gt;</span>. O que eu posso oferecer: <span class="t">&lt;ex.: refazer sem custo até sexta&gt;</span>. O que eu NÃO posso oferecer: <span class="t">&lt;ex.: devolver o dinheiro&gt;</span>.
+Escreva a resposta em até 8 linhas: reconheça o incômodo sem se humilhar, diga o que vai fazer e quando, e termine com um próximo passo claro. Nenhuma promessa fora do que eu listei.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Reconhecimento em uma frase, solução com prazo, próximo passo. Confira que nada do "não posso oferecer" apareceu disfarçado.</div><div class="err"><b>Erro comum</b>Não listar o que você não pode oferecer. A IA, querendo agradar, promete reembolso.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">15</div><div>
+    <h3>Descrever um serviço para quem não entende do assunto</h3>
+    <p>Para o site, o cardápio de serviços, a placa, o catálogo. Quem lê não é do ramo.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Descreva o serviço "<span class="t">&lt;nome do serviço&gt;</span>" para um cliente que não entende do assunto. O que ele resolve para a pessoa: <span class="t">&lt;o problema que o cliente sente&gt;</span>. O que está incluído: <span class="t">&lt;lista&gt;</span>. O que não está: <span class="t">&lt;lista&gt;</span>. Preço ou faixa: <span class="t">&lt;se quiser mostrar&gt;</span>.
+Até 6 linhas, começando pelo problema do cliente e não pelo nome técnico. Sem superlativos ("o melhor", "incrível").</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>A primeira frase fala do problema da pessoa, não do serviço. Sem "melhor", "excelência", "qualidade". Se vier propaganda, peça "tire os adjetivos e deixe os fatos".</div><div class="err"><b>Erro comum</b>Começar pelo nome técnico do serviço. O cliente não procura "drenagem linfática", procura "desinchar depois da cirurgia".</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">16</div><div>
+    <h3>Escrever um post simples sobre uma novidade</h3>
+    <p>Chegou produto novo, abriu horário novo, tem promoção. Um post por semana, sem agência.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Escreva 3 versões de um post para <span class="t">&lt;Instagram / WhatsApp / Facebook&gt;</span> sobre <span class="t">&lt;a novidade, em uma frase&gt;</span>. Quem lê: <span class="t">&lt;ex.: clientes do bairro, 35 a 60 anos&gt;</span>. Meu tom é <span class="t">&lt;de bairro, próximo / profissional&gt;</span>. Cada versão com até 4 linhas e um convite claro no fim (vir, chamar, responder). Uma versão mais séria, uma mais leve, uma que faz uma pergunta. Sem hashtag, sem emoji.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Três textos curtos e diferentes entre si, cada um com um convite. Escolha um, mude uma palavra para ficar com a sua cara, publique.</div><div class="err"><b>Erro comum</b>Pedir "um post" e aceitar o primeiro. Pedir três e escolher é o que evita o texto de agência genérica.</div></div>
+  </div></div>
+
+  <!-- ===== F · PEDIR MELHOR ===== -->
+  <div class="sit" id="pedir"><h3>F · Pedir melhor e aprender com a IA</h3><p>Os quatro pedidos que mudam todos os outros: fazer a IA perguntar, ensinar, dar opções e corrigir o tom.</p></div>
+
+  <div class="step"><div class="b">17</div><div>
+    <h3>Fazer a IA perguntar antes de responder</h3>
+    <p>Quando você não sabe explicar direito o que quer. Inverta: deixe ela perguntar.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Quero <span class="t">&lt;o que você precisa, mesmo mal explicado, ex.: um jeito de organizar os pedidos da loja&gt;</span>. Antes de responder, me faça as 5 perguntas que você precisa para fazer isso bem, uma de cada vez, esperando a minha resposta. Só depois das 5 entregue o resultado.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Uma pergunta, não cinco de uma vez, e nenhuma resposta antes de você responder. Se ela despejar tudo junto, diga "uma por vez".</div><div class="err"><b>Erro comum</b>Achar que precisa saber pedir. Quem não sabe o que quer usa este pedido primeiro e os outros depois.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">18</div><div>
+    <h3>Aprender qualquer coisa do zero em 15 minutos</h3>
+    <p>Um assunto novo apareceu no seu trabalho e você precisa acompanhar uma conversa sobre ele amanhã.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Me ensine <span class="t">&lt;o assunto, ex.: o que é nota fiscal eletrônica de serviço&gt;</span> do zero, para alguém que <span class="t">&lt;quem você é e por que precisa&gt;</span>. Em 4 partes: (1) o que é, em 3 frases, com uma comparação do dia a dia; (2) as 3 palavras que as pessoas usam e o que significam; (3) o erro que iniciantes cometem; (4) 3 perguntas para eu me testar, com as respostas escondidas no fim. Tempo de leitura: 10 minutos.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Quatro partes curtas, uma comparação concreta na primeira, e três perguntas com respostas no fim. Responda as perguntas antes de olhar.</div><div class="err"><b>Erro comum</b>Pedir "explique X". Vem um artigo. Estrutura e limite de tempo é o que transforma artigo em aula.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">19</div><div>
+    <h3>Pedir três versões em vez de uma</h3>
+    <p>Serve para qualquer texto. Escolher entre três é mais fácil e mais rápido do que consertar um.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>Preciso de <span class="t">&lt;o que, ex.: um título para o comunicado sobre o novo horário&gt;</span>. Me dê 3 versões bem diferentes entre si: uma direta, uma mais calorosa, uma mais curta. Para cada uma, uma linha dizendo quando ela funciona melhor. Não escolha por mim.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>Três opções visivelmente diferentes, não a mesma frase com sinônimos, e uma linha de "quando usar" em cada. Se vierem parecidas, peça "mais diferentes entre si".</div><div class="err"><b>Erro comum</b>Aceitar a primeira resposta de qualquer pedido. A primeira é a mais comum, não a melhor.</div></div>
+  </div></div>
+
+  <div class="step"><div class="b">20</div><div>
+    <h3>Corrigir o tom sem recomeçar</h3>
+    <p>A resposta veio certa no conteúdo e errada no jeito. Não apague a conversa: ajuste.</p>
+    <div class="pw"><button class="copy" type="button">copiar</button><pre>O conteúdo está bom. Mude só o tom: <span class="t">&lt;ex.: menos formal, mais direto, sem "prezado", como eu falaria com um colega&gt;</span>. Corte pela metade. Mantenha todos os fatos, prazos e nomes exatamente como estão.</pre></div>
+    <div class="ver"><div><b>O que você deve ver</b>O mesmo conteúdo, menor, com o seu tom. Confira que nenhum prazo ou nome mudou no caminho.</div><div class="err"><b>Erro comum</b>Abrir uma conversa nova e explicar tudo de novo. Na mesma conversa a IA já sabe o contexto; você só ajusta.</div></div>
+  </div></div>
+
+</div></section>
+
+<section id="dicas"><div class="wrap">
+  <span class="chip">Dicas práticas</span>
+  <h2>Dez coisas que ninguém conta no primeiro dia</h2>
+  <p class="sub">Cada uma economiza uma frustração. Leia uma vez; você vai lembrar delas na hora certa.</p>
+  <div class="grid g2">
+    <div class="card dica"><div class="num">1</div><h3>Diga quem você é e para quem é</h3><p>"Sou dona de uma clínica com 6 profissionais" muda a resposta inteira. A IA sem contexto responde para uma pessoa genérica que não existe.</p></div>
+    <div class="card dica"><div class="num">2</div><h3>Descreva o resultado, não o caminho</h3><p>"Quero que o cliente aceite o novo prazo" rende mais que "escreva um e-mail educado". O que você quer que aconteça é a informação mais importante.</p></div>
+    <div class="card dica"><div class="num">3</div><h3>Nunca cole dado real de cliente</h3><p>Nome, documento, telefone, valor de conta: troque por dados inventados. O chat é um serviço fora da sua empresa. O pedido funciona igual com "Cliente A".</p></div>
+    <div class="card dica"><div class="num">4</div><h3>Número, prazo e lei: confira sempre</h3><p>A IA erra número com a mesma confiança com que acerta. Tudo que é conta, data-limite ou regra legal você confere na fonte antes de repassar.</p></div>
+    <div class="card dica"><div class="num">5</div><h3>Ficou ruim? Ajuste, não recomece</h3><p>"Mais curto", "menos formal", "tire os adjetivos", "na primeira frase". A segunda resposta na mesma conversa quase sempre acerta.</p></div>
+    <div class="card dica"><div class="num">6</div><h3>Ponha limite de tamanho</h3><p>"Até 8 linhas", "3 frases", "uma página". Sem limite, a IA escreve demais, e texto longo é o que faz a pessoa desistir de usar.</p></div>
+    <div class="card dica"><div class="num">7</div><h3>Peça o que NÃO fazer</h3><p>"Sem emoji", "sem prometer prazo", "sem 'prezados'". O que você proíbe evita o retrabalho mais comum.</p></div>
+    <div class="card dica"><div class="num">8</div><h3>Uma conversa por assunto</h3><p>Conversa nova para cada tarefa. Misturar o e-mail do fornecedor com a planilha de pagamentos confunde a IA e confunde você.</p></div>
+    <div class="card dica"><div class="num">9</div><h3>Peça a fonte da dúvida, não a certeza</h3><p>"Se não tiver certeza, diga" funciona. A IA passa a apontar onde está chutando, e isso vale mais do que uma resposta redonda.</p></div>
+    <div class="card dica"><div class="num">10</div><h3>Guarde os pedidos que deram certo</h3><p>Um arquivo de texto com os seus 5 pedidos favoritos, já com o seu contexto preenchido. Na segunda semana você não digita mais nada: só cola e troca uma palavra.</p></div>
+  </div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Exemplos</span>
+  <h2>Quatro pessoas, quatro primeiros pedidos</h2>
+  <p class="sub">Nenhuma delas tinha usado IA para trabalhar. Cada uma começou por um pedido do kit e ficou com ele.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Marta, gestora de RH · pedido 3</h3><p>Precisava avisar 120 funcionários que os pedidos de férias mudavam de e-mail para o sistema. Colou o pedido 3 com "o que muda, por quê, até quando". O comunicado saiu em 11 linhas, com a ação e o prazo em linha própria. Ela cortou uma frase e enviou. Antes, esse texto levava uma tarde e três revisões.</p></div>
+    <div class="card"><h3>Beatriz, dona de clínica · pedido 2</h3><p>Confirmava consultas por WhatsApp escrevendo cada mensagem à mão. Usou o pedido 2 com "próximo e informal", guardou o modelo de três linhas e hoje troca só nome e horário. A recepcionista faz o mesmo. O pedido 14 entrou na semana seguinte, no dia em que uma paciente reclamou de um atraso.</p></div>
+    <div class="card"><h3>Paulo, coordenador de marketing · pedido 16</h3><p>Quatro lojas, uma novidade por semana e um post que ninguém escrevia. Pede três versões, escolhe uma, muda uma palavra. Depois de um mês, começou a usar o pedido 11 para comparar duas campanhas antes de gastar: o "argumento contra a minha preferência" já o poupou de um anúncio ruim.</p></div>
+    <div class="card"><h3>Renata, gerente de atendimento · pedido 7</h3><p>Recebia explicações técnicas da equipe e precisava repassá-las a 800 clientes em português comum. O pedido 7 virou rotina: cola a explicação do técnico, pede a versão para cliente, confere que nenhum prazo novo apareceu, envia. Ela diz que a parte "não invente prazo" é a que mais a protege.</p></div>
+  </div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Próximos passos</span>
+  <h2>Do kit ao curso</h2>
+  <p class="sub">Este kit é a porta de entrada. Quem quiser ir além tem caminho pronto no INEMA.CLUB.</p>
+  <div class="phase"><div class="tag">Agora</div><div class="d"><strong>Os 20 pedidos e as 10 dicas (esta página)</strong><span>Use por duas semanas. Guarde os cinco que mais rendem no seu trabalho, com o seu contexto já preenchido.</span></div></div>
+  <div class="phase"><div class="tag">Depois</div><div class="d"><strong>Curso "IA do Zero" (4 aulas curtas)</strong><span>Para quem quer entender o porquê de cada pedido funcionar, com prática no próprio trabalho e sem nenhuma parte técnica. Em preparação no INEMA.CLUB.</span></div></div>
+  <div class="phase"><div class="tag">Quando quiser</div><div class="d"><strong>Os Super-Agentes Chegaram (6 aulas)</strong><span>O passo seguinte: quando a IA deixa de esperar ordens e passa a assumir responsabilidades. Como decidir o que delegar e com que limites. <a href="https://inematds.github.io/agi-ready/" target="_blank" rel="noopener">Abrir o curso</a>.</span></div></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">20 pedidos</div><div class="pill">10 dicas</div><div class="pill">qualquer chat de IA</div><div class="pill">sem instalar nada</div>
+    <p style="margin-top:18px">IA do Zero · um kit INEMA para quem está começando ·
+      <a href="https://github.com/inematds/ia-do-zero">inematds/ia-do-zero</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='ia-do-zero-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+    // botão copiar: copia o texto do pedido (sem os < > vira texto puro, com os marcadores mantidos)
+    document.querySelectorAll('.pw .copy').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var pre=btn.parentNode.querySelector('pre'); var txt=pre.innerText;
+        function ok(){ btn.textContent='copiado'; btn.classList.add('ok'); setTimeout(function(){btn.textContent='copiar';btn.classList.remove('ok');},1600); }
+        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,function(){fallback();}); } else { fallback(); }
+        function fallback(){ var r=document.createRange(); r.selectNodeContents(pre); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');ok();}catch(e){} s.removeAllRanges(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
