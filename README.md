@@ -1,5 +1,7 @@
 # 🌱 IA do Zero
 
+**🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
+
 **Os primeiros 20 pedidos de quem nunca usou IA**, organizados por situação do dia a dia, com o que você deve ver na resposta e o erro comum de cada um. Mais 10 dicas práticas. Funciona em qualquer chat de IA, inclusive nas versões gratuitas.
 
 ## 📖 Guia de uso
